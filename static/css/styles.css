@@ -1,0 +1,1418 @@
+:root {
+  /* Brand Colors */
+  --mustard: #FFD749;
+  --mustard-rgb: 255, 215, 73;
+  --venetian-red: #D0080E;
+  --venetian-red-rgb: 208, 8, 14;
+  --nero: #1E1D1D;
+  --nero-rgb: 30, 29, 29;
+  --white: #FFFFFF;
+  --white-rgb: 255, 255, 255;
+  
+  /* Functional Colors */
+  --primary-color: var(--venetian-red);
+  --primary-color-rgb: var(--venetian-red-rgb);
+  --accent-color: var(--mustard);
+  --accent-color-rgb: var(--mustard-rgb);
+  --text-dark: var(--nero);
+  --text-color: #333333;
+  --text-light: #6c6c6c;
+  --background-light: #f8f8f8;
+  --border-color: #e0e0e0;
+  --max-width: 1200px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.section__container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+.section__header {
+  margin-bottom: 1rem;
+  font-size: 2.5rem; 
+  font-weight: 700;
+  line-height: 1.2rem;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.section__description {
+  max-width: 800px;
+  margin: auto;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.btn:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  color: #888888;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary button - using accent color */
+.btn-secondary {
+  background-color: var(--accent-color);
+  color: var(--nero);
+  box-shadow: 0 2px 10px rgba(var(--accent-color-rgb), 0.2);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(var(--accent-color-rgb), 0.9);
+  box-shadow: 0 4px 12px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.qr-code {
+  display: none;
+}
+
+img {
+  width: 100%;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%; /* Added zoom property */
+  scroll-behavior: smooth;
+  zoom: 1.25; /* Added zoom property */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  padding-top: 80px; /* Adjust based on the height of the nav bar */
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: var(--white);
+  box-shadow: 0 2px 10px rgba(var(--nero-rgb), 0.1);
+}
+
+.nav__header {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-left: 10px;
+}
+
+.nav__logo-img {
+  width: 40px;
+  height: auto;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0 2rem;
+}
+
+.nav__links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav__links a:hover {
+  color: var(--primary-color);
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s;
+}
+
+.nav__links a:hover::after {
+  width: 70%;
+}
+
+.header__container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.header__content h1 {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.header__content h1 span {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.header__image img {
+  max-width: 600px;
+  margin: auto;
+}
+
+.header__btn {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Modal Base Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    padding: 15px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    visibility: hidden;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: var(--white);
+    margin: 20px auto;
+    width: 95%;
+    max-width: 550px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* When modal is open */
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Visitor Modal specific styles */
+#visitorModal {
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#visitorModal .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    max-width: 400px;
+}
+
+/* Reservation Modal specific styles */
+#reservationModal {
+    z-index: 9999;
+}
+
+/* Summary Modal specific styles */
+#summaryModal {
+    z-index: 10000;
+}
+
+/* Ensure modals are hidden by default */
+#visitorModal,
+#reservationModal,
+#summaryModal,
+#confirmationModal,
+#dateAlertModal {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Ensure reservation form is fully visible */
+.reservation-form-container {
+    opacity: 1;
+    background-color: var(--white);
+}
+
+/* Remove any remaining opacity effects */
+.modal * {
+    opacity: 1;
+}
+
+/* Close Button */
+.close-btn, .close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+
+.close-btn:hover, .close:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Form Group - Mobile friendly spacing */
+.form-group {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+/* Label - Better mobile visibility */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #333;
+}
+
+/* Inputs - Better for mobile touch */
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px; /* Better for mobile readability */
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    color: var(--text-dark);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+}
+
+/* Textarea - Mobile friendly */
+textarea {
+    height: 100px;
+    resize: vertical;
+    font-size: 16px; /* Better for mobile readability */
+}
+
+/* Character count - Position for mobile */
+#charCount {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    font-size: 12px;
+    color: #888;
+}
+
+/* Modal headings - Mobile friendly */
+.modal-content h2 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 22px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+}
+
+/* Mobile media queries - Enhanced */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 100%;
+        padding: 15px;
+        margin: 10px auto;
+    }
+    
+    input, select, textarea {
+        padding: 14px;
+        font-size: 16px; /* Ensures no zoom on focus in iOS */
+    }
+    
+    .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .modal-content h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .close-btn, .close {
+        right: 10px;
+        top: 10px;
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    
+    /* Better button spacing for mobile */
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .button-group .btn {
+        margin: 0;
+    }
+    
+    /* Improve modal spacing and scrolling */
+    .modal {
+        padding: 10px;
+    }
+}
+
+/* Small screens (phone) specific */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px 12px;
+        margin: 5px auto;
+    }
+    
+    .modal-content h2 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    
+    input, select, textarea {
+        padding: 12px;
+    }
+    
+    label {
+        font-size: 14px;
+    }
+    
+    /* Smaller modals for small screens */
+    .alert-modal {
+        max-width: 90% !important;
+    }
+    
+    /* Better summary content display on mobile */
+    #summaryContent p {
+        margin: 8px 0;
+        font-size: 14px;
+    }
+}
+
+/* Alert modal - Make more mobile friendly */
+.alert-modal {
+    max-width: 90%;
+    width: 400px;
+    text-align: center;
+    border-radius: 15px;
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+}
+
+.alert-modal .modal-header {
+    background-color: var(--accent-color);
+    color: var(--nero);
+    padding: 15px;
+    position: relative;
+    border-radius: 15px 15px 0 0;
+}
+
+.alert-modal .modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.alert-modal .modal-body {
+    padding: 20px;
+    background-color: var(--white);
+}
+
+.alert-modal .alert-icon {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.alert-modal .modal-footer {
+    padding: 15px;
+    background-color: var(--background-light);
+    border-top: 1px solid var(--border-color);
+    border-radius: 0 0 15px 15px;
+}
+
+.alert-modal .btn {
+    min-width: 120px;
+    margin: 0 auto;
+}
+
+.alert-modal p {
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+/* Confirmation modal mobile improvements */
+.reservation-code {
+    padding: 15px;
+    margin: 15px auto;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    text-align: center;
+    max-width: 90%;
+}
+
+.code-display {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 10px;
+    margin: 10px auto;
+    background: var(--white);
+    border: 2px dashed var(--primary-color);
+    border-radius: 6px;
+    word-break: break-all;
+}
+
+/* Handle extreme mobile sizes */
+@media (max-width: 320px) {
+    .modal-content {
+        padding: 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 12px;
+    }
+    
+    input, select, textarea {
+        padding: 10px;
+        font-size: 15px;
+    }
+    
+    .modal-content h2 {
+        font-size: 17px;
+    }
+    
+    .code-display {
+        font-size: 18px;
+        padding: 8px;
+    }
+    
+    label {
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+}
+
+/* Summary content styles */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#summaryContent p {
+  margin: 10px 0;
+}
+
+#summaryContent strong {
+  color: var(--text-dark);
+}
+
+/* Confirmation Modal Styles */
+.screenshot-notice {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.screenshot-notice i {
+    font-size: 24px;
+}
+
+.confirmation-message {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.confirmation-message p {
+    margin: 10px 0;
+    color: var(--text-dark);
+}
+
+.modal-footer {
+    padding: 15px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#doneButton {
+    min-width: 120px;
+    font-size: 1.1rem;
+}
+
+/* Prevent modal close on outside click */
+.modal.no-outside-close {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.reservation-code-section {
+  margin: 20px 0;
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.reservation-code-section p {
+  margin: 10px 0;
+  color: var(--text-dark);
+  font-size: 1.1em;
+}
+
+.reservation-code {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--primary-color);
+  background-color: #fff;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 8px;
+  border: 2px dashed var(--primary-color);
+  max-width: 300px;
+  word-break: break-all;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.screenshot-notice {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #fff3cd;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.screenshot-notice i {
+  color: #856404;
+  font-size: 1.2em;
+}
+
+#reservationDetails {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+#reservationDetails p {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+#reservationDetails p:last-child {
+  border-bottom: none;
+}
+
+#reservationDetails strong {
+  color: var(--text-dark);
+}
+
+#doneButton {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Prevent modal close button from overlapping with content */
+.modal-content h2 {
+  padding-right: 40px;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (width > 540px) {
+  .special__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width > 768px) {
+  nav {
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav__header {
+    width: auto;
+  }
+
+  .nav__menu__btn {
+    display: none;
+  }
+
+  .nav__links {
+    position: static;
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    transform: none;
+    display: flex;
+    gap: 1rem;
+    margin-right: 1.5rem;
+  }
+
+  .nav__links a {
+    margin: 0;
+  }
+
+  .header__container {
+    gap: 3rem;
+  }
+
+  .header__content {
+    text-align: left;
+  }
+
+  .header__content .section__description {
+    margin: 0;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .header__btn {
+    justify-content: start;
+  }
+
+  .special__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .chef__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .client__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width > 1024px) {
+  .client__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Remove spinner buttons from number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Campaign Section Styles */
+.campaigns {
+    background-color: var(--background-light);
+    padding: 60px 0;
+}
+
+.campaigns__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.campaign__card {
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(var(--nero-rgb), 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.campaign__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(var(--nero-rgb), 0.15);
+}
+
+.campaign__card::after {
+  content: "Click to Reserve";
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 5px 16px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.campaign__card:hover::after {
+  opacity: 1;
+}
+
+.campaign__content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.reserve-here {
+  color: var(--primary-color);
+  text-decoration: underline;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.campaign__card:hover .reserve-here {
+  transform: scale(1.05);
+  color: rgba(var(--primary-color-rgb), 0.9);
+}
+
+/* Campaign Select styles for locked state */
+#campaignSelect.locked {
+  background-color: var(--background-light);
+  cursor: not-allowed;
+  opacity: 0.9;
+  border-left: 3px solid var(--accent-color);
+  padding-left: calc(15px - 3px); /* Adjust padding to account for border */
+}
+
+#campaignSelect.locked:focus {
+  outline: none;
+  border-color: var(--border-color);
+  box-shadow: none;
+}
+
+/* Lock icon for locked campaign select */
+.form-group.locked-campaign {
+  position: relative;
+}
+
+.form-group.locked-campaign::after {
+  content: "🔒";
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-25%);
+  font-size: 14px;
+  color: var(--accent-color);
+  pointer-events: none;
+}
+
+.campaign__content h3 {
+  color: var(--text-dark);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.campaign__content p {
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.campaign-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.campaign-btn:hover {
+    background-color: #45a049;
+}
+
+.reservation-button-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.main-reserve-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-reserve-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading Spinner Styles */
+
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #4CAF50;
+    animation: spin 1s linear infinite;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-text {
+    color: white;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Button loading state */
+.btn.loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    border-top: 3px solid transparent;
+    animation: spin 1s linear infinite;
+}
+
+/* Animation for the modal */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-70px); }
+    to { opacity: 1; transform: translateY(-50%); }
+}
+
+/* Alert modal styling for clear visibility */
+.alert-modal {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Campaign Reserve Buttons */
+.campaign-reserve-btn {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.campaign-reserve-btn:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.4);
+}
+
+/* Locked form field styling */
+.locked-field {
+  background-color: var(--background-light);
+  cursor: not-allowed;
+  opacity: 0.9;
+  border-left: 3px solid var(--accent-color);
+  position: relative;
+}
+
+.locked-field:focus {
+  outline: none;
+}
+
+.locked-field::after {
+  content: "🔒";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--accent-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-50%) scale(0.9); }
+    to { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+/* Mobile focus states */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15);
+}
+
+/* Better mobile reservations */
+.reservation-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.main-reserve-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.main-reserve-btn:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(var(--primary-color-rgb), 0.4);
+}
+
+.main-reserve-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(var(--primary-color-rgb), 0.2);
+}
+
+/* Mobile-friendly campaign cards */
+@media (max-width: 768px) {
+    .campaigns__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .campaign__card {
+        margin-bottom: 0;
+    }
+    
+    .campaign-reserve-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+    
+    /* Fixed position for error messages on mobile */
+    .alert-modal {
+        max-width: 85%;
+        width: 320px;
+    }
+    
+    /* Better mobile form interaction */
+    input, select, textarea {
+        -webkit-appearance: none; /* Removes default styling on iOS */
+        appearance: none;
+    }
+    
+    select {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+        padding-right: 40px;
+    }
+    
+    /* Better mobile buttons */
+    .btn {
+        min-height: 48px; /* Minimum touch target size */
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn:active {
+        transform: translateY(1px);
+    }
+    
+    /* Touch ripple effect for buttons */
+    .btn::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 0;
+        border-radius: 100%;
+        transform: scale(1, 1) translate(-50%, -50%);
+        transform-origin: 50% 50%;
+    }
+    
+    .btn:active::after {
+        opacity: 1;
+        animation: ripple 0.5s ease-out;
+    }
+    
+    @keyframes ripple {
+        0% {
+            transform: scale(0, 0);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(15, 15);
+            opacity: 0;
+        }
+    }
+}
+
+/* Sticky date picker for mobile */
+@media (max-width: 480px) {
+    .modal-content {
+        padding-bottom: 75px; /* Extra space for virtual keyboard */
+    }
+    
+    /* Improved spacing between form elements */
+    .form-group + .form-group {
+        margin-top: 20px;
+    }
+    
+    /* Better handling of long reservation codes */
+    .code-display {
+        word-break: break-all;
+        font-size: 20px;
+        padding: 12px 10px;
+    }
+    
+    /* Prevent content from being hidden under keyboard */
+    input:focus, select:focus, textarea:focus {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+/* Fix for modal scrolling on mobile */
+body.modal-open {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+}
+
+@media (max-width: 480px) {
+    /* Better mobile scrolling for modals with long forms */
+    .modal {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Improve button touch targets */
+    .btn, button, 
+    input[type="button"], 
+    input[type="submit"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Ensure all interactive elements have sufficient touch target size */
+    input, select, textarea,
+    .close-btn, .close {
+        min-height: 44px;
+    }
+}
+
+/* Mobile-friendly navigation bar */
+.nav__menu__btn {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  background: none;
+  border: none;
+  padding: 0.5rem;
+}
+
+.nav__menu__btn:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .nav__menu__btn {
+    display: block;
+  }
+
+  .nav__links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(var(--nero-rgb), 0.1);
+    z-index: 998;
+  }
+
+  .nav__links.active {
+    display: flex;
+  }
+
+  .nav__links a {
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+/* Loading Overlay Styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.loading-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    color: #333;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Add loading state to body */
+body.loading {
+    overflow: hidden;
+}
+
+body.loading .modal {
+    pointer-events: none;
+}
+
+/* Loading state for buttons */
+button.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+button.loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border: 3px solid #ffffff;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Ensure modal is visible when open */
+.modal-open {
+    overflow: hidden;
+}
+
+.modal-open .modal {
+    display: block !important;
+}
+
+/* Prevent background content from showing through */
+.modal-open .modal ~ * {
+    filter: none !important;
+    opacity: 1 !important;
+    pointer-events: none;
+}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <title>PALUTO Seafood Grill & Restaurant</title>
+  </head>
+  <body>
+
+    <nav>
+      <div class="nav__header">
+        <div class="logo nav__logo">
+          <a href="#" class="logo-container">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Paluto Logo" class="nav__logo-img">
+            <span class="logo-text">PALUTO</span>
+          </a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <span><i class="ri-menu-line"></i></span>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#special">Special</a></li>
+        <li><a href="#chef">Chef</a></li>
+        <li><a href="#client">Reviews</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <header class="section__container header__container" id="home">
+      <div class="header__content">
+        <h1>Experience Iloilo, <span>Kari na sa Paluto!</span></h1>
+        <p class="section__description">
+          For table reservations and inquiries, you may message <br> or call us at 📞(+63) 927 847 7110 
+        </p>
+        <div class="header__btn">
+          <div class="reservation-button-container">
+            <button class="btn main-reserve-btn" id="mainReserveBtn"><b>Make a Reservation</b></button>
+          </div>
+        </div>
+      </div>
+      <div class="header__image">
+        <img src="{{ url_for('static', filename='images/header.png') }}" alt="header" />
+      </div>
+    </header>
+
+    <!-- Visitor Modal -->
+    <div class="modal" id="visitorModal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Welcome to PALUTO!</h2>
+        <form id="visitorForm">
+          <div class="form-group">
+            <label for="visitorName">Full Name:</label>
+            <input type="text" id="visitorName" name="fullName" required>
+          </div>
+          <div class="form-group">
+            <label for="visitorPhone">Contact Number:</label>
+            <input type="tel" id="visitorPhone" name="phoneNumber" value="09" maxlength="11" pattern="09[0-9]{9}" required>
+          </div>
+          <button type="submit" class="btn">Proceed</button>
+        </form>
+      </div>
+    </div>
+
+        <!-- Campaigns Section -->
+        <section class="campaigns" id="campaigns">
+          <div class="section__container">
+            <h2 class="section__title">Our Special Campaigns/Promos</h2>
+            <div class="campaigns__grid">
+             
+              <!-- Campaign 1 -->
+              <a href="/campaign1" class="campaign__card">
+                <div class="campaign__content">
+                  <h3>Campaign 1</h3>
+                  <p>Description of Campaign 1 and its special offers.</p>
+                  <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?data=YOUR_TEXT_OR_URL&size=200x200" alt="QR Code for Campaign 1">
+                  <p class="reserve-here">Click to Reserve</p>
+                </div>
+              </a>
+
+              <!-- Campaign 2 -->
+              <a href="/campaign2" class="campaign__card">
+                <div class="campaign__content">
+                  <h3>Campaign 2</h3>
+                  <p>Description of Campaign 2 and its special offers.</p>
+                  <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?data=YOUR_TEXT_OR_URL&size=200x200" alt="QR Code for Campaign 2">
+                  <p class="reserve-here">Click to Reserve</p>
+                </div>
+              </a>
+
+              <!-- Campaign 3 -->
+              <a href="/campaign3" class="campaign__card">
+                <div class="campaign__content">
+                  <h3>Campaign 3</h3>
+                  <p>Description of Campaign 3 and its special offers.</p>
+                  <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?data=YOUR_TEXT_OR_URL&size=200x200" alt="QR Code for Campaign 3">
+                  <p class="reserve-here">Click to Reserve</p>
+                </div>
+              </a>
+            </div>
+            
+          </div>
+        </section>
+       <!-- Loading Overlay -->
+       <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+          
+          <div class="loading-text">Processing your request...</div>
+        </div>
+      </div>
+        <!-- Reservation Modal -->
+        <div class="modal" id="reservationModal">
+          <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Make a Reservation</h2>
+            <form id="reservationForm">
+              <div class="form-group">
+                <label for="campaignSelect">Select Campaign:</label>
+                <select id="campaignSelect" name="campaign" required>
+                  <option value="Basic">Basic Reservation</option>
+                  <option value="Campaign 1">Seafood Friday Special</option>
+                  <option value="Campaign 2">Weekend Feast</option>
+                  <option value="Campaign 3">Family Package</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="reserveName">Full Name:</label>
+                <input type="text" id="reserveName" name="fullName" required>
+              </div>
+              <div class="form-group">
+                <label for="reservePhone">Contact Number:</label>
+                <input type="tel" id="reservePhone" name="phoneNumber" value="09" maxlength="11" pattern="09[0-9]{9}" required>
+              </div>
+              <div class="form-group">
+                <label for="inquiryType">Type of Inquiry:</label>
+                <select id="inquiryType" name="inquiryType" required>
+                  <option value="">Select Type</option>
+                  <option value="Regular Dining">Regular Dining</option>
+                  <option value="Special Event">Special Event</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="reserveDate">Date:</label>
+                <input type="date" id="reserveDate" name="date" required>
+              </div>
+              <div class="form-group">
+                <label for="reserveTime">Time:</label>
+                <select id="reserveTime" name="time" required>
+                  <option value="">Select a time</option>
+                  <option value="09:00 AM">9:00 AM</option>
+                  <option value="09:30 AM">9:30 AM</option>
+                  <option value="10:00 AM">10:00 AM</option>
+                  <option value="10:30 AM">10:30 AM</option>
+                  <option value="11:00 AM">11:00 AM</option>
+                  <option value="11:30 AM">11:30 AM</option>
+                  <option value="12:00 PM">12:00 PM</option>
+                  <option value="12:30 PM">12:30 PM</option>
+                  <option value="13:00 PM">1:00 PM</option>
+                  <option value="13:30 PM">1:30 PM</option>
+                  <option value="14:00 PM">2:00 PM</option>
+                  <option value="14:30 PM">2:30 PM</option>
+                  <option value="15:00 PM">3:00 PM</option>
+                  <option value="15:30 PM">3:30 PM</option>
+                  <option value="16:00 PM">4:00 PM</option>
+                  <option value="16:30 PM">4:30 PM</option>
+                  <option value="17:00 PM">5:00 PM</option>
+                  <option value="17:30 PM">5:30 PM</option>
+                  <option value="18:00 PM">6:00 PM</option>
+                  <option value="18:30 PM">6:30 PM</option>
+                  <option value="19:00 PM">7:00 PM</option>
+                  <option value="19:30 PM">7:30 PM</option>
+                  <option value="20:00 PM">8:00 PM</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="reservePeople">Head Count:</label>
+                <input type="number" id="reservePeople" name="numberOfPeople" min="1" required>
+              </div>
+              <div class="form-group">
+                <label for="reserveMessage">Special Requests: <span id="charCount">0/250</span></label>
+                <textarea id="reserveMessage" name="message" maxlength="250"></textarea>
+              </div>
+              <button type="submit" class="btn">Review Reservation</button>
+            </form>
+          </div>
+        </div>
+
+    <!-- Summary Modal -->
+    <div class="modal" id="summaryModal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Reservation Summary</h2>
+        <div id="summaryContent"></div>
+        <div class="button-group">
+          <button id="confirmReservation" class="btn">Confirm Reservation</button>
+          <button id="editReservation" class="btn btn-secondary">Edit Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Reservation Confirmed!</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="reservation-code">
+                    <h3>Your Reservation Code:</h3>
+                    <div class="code-display" id="reservationCode"></div>
+                </div>
+                <div class="screenshot-notice">
+                    <i class="fas fa-camera"></i>
+                    <p>Please take a screenshot of your reservation code before closing this window</p>
+                </div>
+                <div class="confirmation-message">
+                    <p>Thank you for choosing PALUTO! We've received your reservation and look forward to serving you.</p>
+                    <p>Please save your reservation code for reference.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="doneButton" class="btn">Done</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Date Alert Modal -->
+<div id="dateAlertModal" class="modal">
+    <div class="modal-content alert-modal">
+        <div class="modal-header">
+            <h3>Date Selection Notice</h3>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="alert-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <p id="dateAlertMessage"></p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" onclick="closeModal(dateAlertModal)">Got it!</button>
+        </div>
+    </div>
+</div>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
